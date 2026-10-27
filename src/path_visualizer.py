@@ -2,8 +2,8 @@
 
 Animates Dijkstra's wavefront expansion step-by-step using delta-time ticks
 (never blocking the main game loop with time.sleep), renders the optimal path
-in the Primary accent color (#38D9FF), and displays alternative paths in the
-Secondary accent color (#8B7CFF).
+in the mustard optimal_path palette color, and displays alternative routes in the
+clay rose secondary accent color. Flat rendering without neon glow or halos.
 """
 
 from typing import Callable, Dict, List, Optional, Set, Tuple, Union
@@ -33,11 +33,9 @@ class PathVisualizer:
         self.revealed_explored: List[Tuple[int, int]] = []
         self.revealed_explored_set: Set[Tuple[int, int]] = set()
 
-        # Cached surfaces to eliminate per-frame allocations
+        # Cached surface for explored tiles to avoid per-frame allocation
         self._cached_tile_surf: Optional[pygame.Surface] = None
         self._cached_tile_size: Tuple[int, int] = (0, 0)
-        self._cached_glow_surf: Optional[pygame.Surface] = None
-        self._cached_glow_size: Tuple[int, int] = (0, 0)
 
     def set_solution(
         self,
@@ -110,16 +108,13 @@ class PathVisualizer:
         tile_to_center: Callable[[int, int], Tuple[int, int]],
         colors: Dict[str, pygame.Color],
     ) -> None:
-        """Render explored search frontier, alternative path, and optimal path.
-
-        Uses cached alpha surfaces to prevent frame-by-frame memory allocations.
-        """
+        """Render explored search frontier, alternative path, and optimal path using flat styling."""
         if not self.show_path:
             return
 
-        explored_color = colors.get("explored", pygame.Color("#1B3552"))
-        primary_color = colors.get("primary", pygame.Color("#38D9FF"))
-        secondary_color = colors.get("secondary", pygame.Color("#8B7CFF"))
+        explored_color = colors.get("explored", colors.get("wall", pygame.Color(59, 50, 41)))
+        primary_color = colors.get("optimal_path", colors.get("accent", colors.get("primary", pygame.Color(227, 176, 75))))
+        secondary_color = colors.get("accent_alt", colors.get("secondary", pygame.Color(168, 116, 90)))
 
         # 1. Draw explored wavefront
         nodes_to_draw = self.revealed_explored if self.is_animating else self.explored_order
@@ -136,28 +131,16 @@ class PathVisualizer:
                 rect = tile_to_rect(x, y)
                 surface.blit(self._cached_tile_surf, rect.topleft)
 
-        # 2. Draw alternative path (if available and enabled)
+        # 2. Draw alternative path (if available and enabled) - flat 3px line
         if self.alternative_path and len(self.alternative_path) > 1 and self.show_alternative:
             alt_points = [tile_to_center(x, y) for x, y in self.alternative_path]
             pygame.draw.lines(surface, secondary_color, False, alt_points, width=3)
             for pt in alt_points:
                 pygame.draw.circle(surface, secondary_color, pt, radius=3)
 
-        # 3. Draw optimal path
+        # 3. Draw optimal path - flat 3px line (no neon glow/halos)
         if self.optimal_path and len(self.optimal_path) > 1:
             points = [tile_to_center(x, y) for x, y in self.optimal_path]
-            surf_size = surface.get_size()
-
-            if self._cached_glow_surf is None or self._cached_glow_size != surf_size:
-                self._cached_glow_surf = pygame.Surface(surf_size, pygame.SRCALPHA)
-                self._cached_glow_size = surf_size
-
-            self._cached_glow_surf.fill((0, 0, 0, 0))
-            pygame.draw.lines(self._cached_glow_surf, (*primary_color[:3], 60), False, points, width=9)
-            pygame.draw.lines(self._cached_glow_surf, (*primary_color[:3], 130), False, points, width=6)
-            surface.blit(self._cached_glow_surf, (0, 0))
-
-            # Core path line
             pygame.draw.lines(surface, primary_color, False, points, width=3)
             for pt in points:
                 pygame.draw.circle(surface, primary_color, pt, radius=3)
