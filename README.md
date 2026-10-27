@@ -236,85 +236,212 @@ classDiagram
     direction TB
 
     class Game {
+        -screen: Surface
+        -clock: Clock
+        -state: GameState
+        +grid: Grid
+        +player: Player
+        +level_manager: LevelManager
+        +checkpoint_manager: CheckpointManager
+        +question_manager: QuestionManager
+        +reward_manager: RewardManager
+        +hint_manager: HintManager
+        +save_manager: SaveManager
+        +sound_manager: SoundManager
+        +rag_pipeline: RAGPipeline
+        +visualizer: PathVisualizer
+        +ui: UIManager
+        +checkpoint_timer: Timer
         +run()
         +handle_events()
         +update(dt)
         +render()
+        +_generate_level()
+        +_trigger_checkpoint(cp)
+        +_submit_checkpoint_answer()
+        +_complete_level()
     }
 
     class Grid {
-        +width, height
-        +get_cell(x, y)
-        +get_neighbors(x, y)
+        +width: int
+        +height: int
+        +cells: list[list[Cell]]
+        +get_cell(x, y): Cell
+        +get_neighbors(x, y): list[tuple]
+        +is_valid(x, y): bool
+    }
+
+    class Cell {
+        +x: int
+        +y: int
+        +cell_type: CellType
+        +weight: int
+        +is_wall: bool
+        +cost: int
     }
 
     class DijkstraSolver {
-        +solve(grid, start, end)$
-        +find_alternative(grid, start, end, path)$
+        +solve(grid, start, end)$ tuple
+        +find_alternative(grid, start, end, path)$ tuple
     }
 
     class MazeGenerator {
-        +generate(rooms_x, rooms_y)
+        +rooms_x: int
+        +rooms_y: int
+        +generate(rooms_x, rooms_y): tuple
+        -_dfs_carve()
+        -_add_loops()
+        -_assign_terrain()
+        -_validate()
     }
 
     class Player {
-        +pos, total_cost
-        +move(dx, dy, grid)
-        +calculate_efficiency(optimal)
+        +x: int
+        +y: int
+        +pos: tuple
+        +total_cost: int
+        +trail: list
+        +move(dx, dy, grid): bool
+        +calculate_efficiency(optimal_cost): float
+        +reset(pos)
     }
 
     class LevelManager {
-        +current_level, score
-        +get_rooms()
-        +get_checkpoints_count()
+        +current_level: int
+        +score: int
+        +max_level: int
+        +get_rooms(): int
+        +get_grid_size(): tuple
+        +get_checkpoints_count(): int
+        +get_difficulty(): str
+        +add_score(pts)
+        +deduct_score(pts)
         +advance()
     }
 
+    class Checkpoint {
+        +checkpoint_num: int
+        +pos: tuple
+        +difficulty: str
+        +question: Question
+        +is_cleared: bool
+        +attempts: int
+        +unlock()
+        +reset()
+    }
+
     class CheckpointManager {
-        +checkpoints
-        +generate_checkpoints(grid, start, end, path, count)
-        +validate_unbypassable(grid, start, end, pos)
+        +checkpoints: list[Checkpoint]
+        +generate_checkpoints(grid, start, end, path, count): list
+        +validate_unbypassable(grid, start, end, pos): bool
+        +all_cleared(): bool
+        +get_at_pos(pos): Checkpoint
+    }
+
+    class Question {
+        +id: str
+        +topic: str
+        +difficulty: str
+        +question: str
+        +options: list[str]
+        +answer: int
+        +explanation: str
+        +is_correct(idx): bool
+        +create_shuffled_copy(): Question
     }
 
     class QuestionManager {
-        +get_question(topic, difficulty)
+        +questions: list[Question]
+        +by_topic: dict
+        +custom_materials: list[Question]
+        +get_question(topic, difficulty): Question
         +add_custom_questions(questions)
-        +get_topics()
+        +clear_custom_questions()
+        +has_custom_materials(): bool
+        +get_topics(): list[str]
     }
 
     class RewardManager {
-        +calculate_level_rewards(...)
+        +calculate_level_rewards(...): dict
     }
 
     class HintManager {
-        +request_path_hint(...)
-        +request_quiz_hint(...)
+        +hints_used_this_level: int
+        +active_path_hint: tuple
+        +get_cost(hint_type): int
+        +can_afford(score, hint_type): bool
+        +request_path_hint(...): tuple
+        +request_quiz_hint(...): int
+        +update(dt)
+        +reset_level()
     }
 
     class SaveManager {
-        +save()
-        +load()
-        +has_saved_game()
+        +filepath: str
+        +data: dict
+        +save(level, score, ...): bool
+        +load(): dict
+        +has_saved_game(): bool
     }
 
     class SoundManager {
+        +is_available: bool
+        +sounds: dict
         +play(sound_name)
+        +set_volume(vol)
+        +toggle_sound(): bool
+    }
+
+    class Timer {
+        +duration: float
+        +time_remaining: float
+        +is_running: bool
+        +is_expired: bool
+        +start(duration)
+        +update(dt): bool
+        +pause()
+        +stop()
     }
 
     class RAGPipeline {
-        +process_file(path)
-        +generated_questions
+        +ingestor: DocumentIngestor
+        +retriever: Retriever
+        +generator: QuestionGenerator
+        +generated_questions: list[Question]
+        +process_file(file_path): tuple
+        +get_status_summary(): dict
+    }
+
+    class DocumentIngestor {
+        +chunk_size: int
+        +chunk_overlap: int
+        +ingest_file(path): tuple
+        +chunk_text(text, source): list
+    }
+
+    class Retriever {
+        +active_mode: str
+        +search(query, top_k): list
+    }
+
+    class QuestionGenerator {
+        +chunks: list
+        +generate_all(target_count): list
     }
 
     class PathVisualizer {
+        +show_path: bool
         +update(dt)
-        +draw(surface, ...)
+        +render(surface, grid, cell_size, origin)
+        +toggle_path()
     }
 
     class UIManager {
         +draw_panel(...)
         +draw_button(...)
+        +draw_text(...)
         +draw_glow_circle(...)
+        +draw_progress_bar(...)
     }
 
     Game --> Grid
@@ -328,12 +455,23 @@ classDiagram
     Game --> HintManager
     Game --> SaveManager
     Game --> SoundManager
+    Game --> Timer
     Game --> RAGPipeline
     Game --> PathVisualizer
     Game --> UIManager
+
+    Grid --> Cell
+    CheckpointManager --> Checkpoint
+    Checkpoint --> Question
+    QuestionManager --> Question
     CheckpointManager --> DijkstraSolver
     CheckpointManager --> QuestionManager
+    RAGPipeline --> DocumentIngestor
+    RAGPipeline --> Retriever
+    RAGPipeline --> QuestionGenerator
     RAGPipeline --> QuestionManager
+    HintManager --> LevelManager
+    HintManager --> Question
 ```
 
 ---

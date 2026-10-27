@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "current_level": 2,
+  "highest_unlocked_level": 2,
+  "total_score": 1350,
+  "completed_levels": {
+    "1": {
+      "best_score": 750,
+      "efficiency": 100.0,
+      "completed_at": "2026-10-27T11:07:50.635732"
+    }
+  },
+  "achievements": [
+    "Dijkstra Disciple (100% Efficiency)",
+    "Sector Pioneer (Cleared Level 1)"
+  ],
+  "selected_topic": "All Topics",
+  "selected_difficulty": "Level Default",
+  "last_updated": "2026-10-27T11:07:50.635796"
+}

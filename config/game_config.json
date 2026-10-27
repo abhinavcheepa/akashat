@@ -1,0 +1,78 @@
+{
+  "window": {
+    "width": 1120,
+    "height": 720,
+    "title": "PATHFINDER - Think. Navigate. Conquer.",
+    "fps": 60
+  },
+  "colors": {
+    "background": "#0B1020",
+    "panel": "#141C2F",
+    "panel_border": "#222E4A",
+    "primary": "#38D9FF",
+    "secondary": "#8B7CFF",
+    "success": "#35D39A",
+    "warning": "#FFBF69",
+    "danger": "#FF647C",
+    "text": "#F3F6FC",
+    "text_dim": "#8B9AB4",
+    "wall": "#162035",
+    "wall_border": "#222F4C",
+    "cell_open": "#0E182A",
+    "cell_sand": "#332A15",
+    "cell_forest": "#123023",
+    "cell_swamp": "#3A1B2D",
+    "explored": "#1A3654",
+    "trail": "#1F3D63",
+    "player": "#38D9FF",
+    "destination": "#35D39A",
+    "checkpoint_locked": "#FFBF69",
+    "checkpoint_cleared": "#35D39A",
+    "hint_glow": "#FFD166"
+  },
+  "terrain": {
+    "OPEN": { "name": "Open Path", "weight": 1, "symbol": "circle" },
+    "SAND": { "name": "Sand Dune", "weight": 2, "symbol": "triangle" },
+    "FOREST": { "name": "Dense Woods", "weight": 3, "symbol": "diamond" },
+    "SWAMP": { "name": "Deep Mire", "weight": 5, "symbol": "star" }
+  },
+  "checkpoints": {
+    "time_limits": {
+      "Easy": 25.0,
+      "Medium": 20.0,
+      "Hard": 15.0
+    },
+    "cost_penalty_on_failure": 3,
+    "score_penalty_on_failure": 25,
+    "score_reward_on_success": 100,
+    "allow_retries": true,
+    "max_retries": 3
+  },
+  "rewards": {
+    "correct_answer_points": 100,
+    "efficiency_100_bonus": 150,
+    "efficiency_90_bonus": 100,
+    "efficiency_75_bonus": 50,
+    "checkpoint_all_cleared_bonus": 200,
+    "no_hints_used_bonus": 100,
+    "base_level_completion": 100
+  },
+  "hints": {
+    "path_hint_cost": 40,
+    "quiz_50_50_cost": 30
+  },
+  "settings": {
+    "sound_enabled": true,
+    "volume": 75,
+    "timer_modifier": 0.0,
+    "selected_topic": "All Topics",
+    "selected_difficulty": "Level Default"
+  },
+  "levels": {
+    "1": { "rooms": 7, "checkpoints": 1, "difficulty": "Easy", "name": "Sector Alpha - Fundamentals" },
+    "2": { "rooms": 9, "checkpoints": 2, "difficulty": "Easy", "name": "Sector Beta - Routing Gates" },
+    "3": { "rooms": 11, "checkpoints": 2, "difficulty": "Medium", "name": "Sector Gamma - Dynamic Topology" },
+    "4": { "rooms": 13, "checkpoints": 3, "difficulty": "Medium", "name": "Sector Delta - Strategic Labyrinth" },
+    "5": { "rooms": 15, "checkpoints": 4, "difficulty": "Hard", "name": "Sector Omega - Master Dijkstra" }
+  }
+}

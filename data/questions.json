@@ -1,0 +1,520 @@
+{
+  "version": "1.0",
+  "topics": [
+    "DSA",
+    "Python and OOP",
+    "DBMS",
+    "OS",
+    "Networks",
+    "Math and Probability",
+    "General Knowledge",
+    "Custom Materials"
+  ],
+  "questions": [
+    {
+      "id": "dsa_01",
+      "topic": "DSA",
+      "difficulty": "Medium",
+      "question": "What is the worst-case time complexity of Dijkstra's algorithm implemented with a binary min-heap?",
+      "options": ["O((V + E) log V)", "O(V^2)", "O(E + V log V)", "O(V * E)"],
+      "answer": 0,
+      "explanation": "With a binary min-heap, extracting min takes O(log V) for V vertices and decrease-key takes O(log V) for E edges, giving O((V + E) log V)."
+    },
+    {
+      "id": "dsa_02",
+      "topic": "DSA",
+      "difficulty": "Easy",
+      "question": "Which edge weight property is required for standard Dijkstra's algorithm to guarantee an optimal shortest path?",
+      "options": ["All integer weights", "Non-negative weights only", "Directed edges only", "Strictly positive weights (> 0)"],
+      "answer": 1,
+      "explanation": "Dijkstra's greedy choice assumes that extending a path cannot decrease total distance, which fails when negative edge weights exist."
+    },
+    {
+      "id": "dsa_03",
+      "topic": "DSA",
+      "difficulty": "Easy",
+      "question": "Which data structure is standard for Breadth-First Search (BFS) to find the fewest steps in an unweighted graph?",
+      "options": ["LIFO Stack", "Priority Queue", "FIFO Queue", "Binary Search Tree"],
+      "answer": 2,
+      "explanation": "BFS explores vertices level by level in order of arrival using a First-In, First-Out (FIFO) queue."
+    },
+    {
+      "id": "dsa_04",
+      "topic": "DSA",
+      "difficulty": "Medium",
+      "question": "What is the average-case time complexity of searching for a key in a self-balancing binary search tree (AVL or Red-Black)?",
+      "options": ["O(n)", "O(n log n)", "O(1)", "O(log n)"],
+      "answer": 3,
+      "explanation": "Self-balancing binary trees maintain height bounded by O(log n), providing logarithmic search, insertion, and deletion."
+    },
+    {
+      "id": "dsa_05",
+      "topic": "DSA",
+      "difficulty": "Easy",
+      "question": "In a binary min-heap of n elements, what is the time complexity to inspect the minimum element without removing it?",
+      "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+      "answer": 0,
+      "explanation": "The minimum element is stored at the root array index 0, so peeking requires constant O(1) time."
+    },
+    {
+      "id": "dsa_06",
+      "topic": "DSA",
+      "difficulty": "Medium",
+      "question": "What is the worst-case time complexity of QuickSort when bad pivots are chosen (e.g. sorted input with last-element pivot)?",
+      "options": ["O(n log n)", "O(n^2)", "O(n)", "O(log n)"],
+      "answer": 1,
+      "explanation": "Unbalanced partitions of size 0 and n-1 yield recurrence T(n) = T(n-1) + O(n), resulting in O(n^2) worst-case time."
+    },
+    {
+      "id": "dsa_07",
+      "topic": "DSA",
+      "difficulty": "Easy",
+      "question": "Which graph representation is most space-efficient for a sparse graph with V vertices and E edges where E << V^2?",
+      "options": ["Adjacency Matrix", "Incidence Matrix", "Adjacency List", "Complete Distance Matrix"],
+      "answer": 2,
+      "explanation": "An adjacency list consumes O(V + E) space, whereas an adjacency matrix consumes O(V^2) space regardless of density."
+    },
+    {
+      "id": "dsa_08",
+      "topic": "DSA",
+      "difficulty": "Hard",
+      "question": "What algorithmic design paradigm does Dijkstra's algorithm fundamentally follow?",
+      "options": ["Divide and conquer", "Dynamic programming", "Backtracking", "Greedy approach"],
+      "answer": 3,
+      "explanation": "Dijkstra's algorithm repeatedly makes the locally optimal choice by settling the currently unvisited node with smallest known distance."
+    },
+    {
+      "id": "py_01",
+      "topic": "Python and OOP",
+      "difficulty": "Medium",
+      "question": "In Python, which algorithm is used to compute the Method Resolution Order (MRO) for multiple inheritance?",
+      "options": ["C3 Linearization", "Depth-First Search", "Breadth-First Search", "Dijkstra Linearization"],
+      "answer": 0,
+      "explanation": "Python adopts the C3 Linearization algorithm to enforce monotonicity and maintain consistent subclass ordering in multiple inheritance."
+    },
+    {
+      "id": "py_02",
+      "topic": "Python and OOP",
+      "difficulty": "Medium",
+      "question": "What is the primary benefit of declaring __slots__ in a Python class definition?",
+      "options": ["Auto-generates getter and setter methods", "Restricts dynamic attribute creation and saves memory by suppressing __dict__", "Enables multithreading for instances", "Forces all attributes to be private"],
+      "answer": 1,
+      "explanation": "Declaring __slots__ eliminates the per-instance __dict__ dictionary, drastically reducing memory usage and preventing arbitrary attribute assignment."
+    },
+    {
+      "id": "py_03",
+      "topic": "Python and OOP",
+      "difficulty": "Easy",
+      "question": "Which Python standard library module provides a binary min-heap priority queue implementation?",
+      "options": ["collections.heap", "queue.PriorityTree", "heapq", "bisect"],
+      "answer": 2,
+      "explanation": "The standard 'heapq' module provides min-heap functions (heappush, heappop, heapify) operating directly on standard Python lists."
+    },
+    {
+      "id": "py_04",
+      "topic": "Python and OOP",
+      "difficulty": "Medium",
+      "question": "Which SOLID principle asserts that objects of a superclass should be replaceable with objects of a subclass without altering program correctness?",
+      "options": ["Single Responsibility Principle", "Open-Closed Principle", "Interface Segregation Principle", "Liskov Substitution Principle"],
+      "answer": 3,
+      "explanation": "The Liskov Substitution Principle (LSP) requires subclasses to fulfill the contracts of their base classes without breaking behavior."
+    },
+    {
+      "id": "py_05",
+      "topic": "Python and OOP",
+      "difficulty": "Easy",
+      "question": "What is the average-case time complexity of retrieving a value by key in a standard Python dictionary?",
+      "options": ["O(1)", "O(log n)", "O(n)", "O(n^2)"],
+      "answer": 0,
+      "explanation": "Python dictionaries are implemented with high-performance hash tables with open addressing, giving O(1) average lookup."
+    },
+    {
+      "id": "py_06",
+      "topic": "Python and OOP",
+      "difficulty": "Easy",
+      "question": "What does the @staticmethod decorator indicate in a Python class?",
+      "options": ["The method receives the class object as its first argument", "The method does not receive an implicit first argument (neither self nor cls)", "The method cannot be overridden by subclasses", "The method caches its results automatically"],
+      "answer": 1,
+      "explanation": "A static method is a plain function bound to a class namespace that does not accept an automatic self or cls argument."
+    },
+    {
+      "id": "py_07",
+      "topic": "Python and OOP",
+      "difficulty": "Easy",
+      "question": "Which magic method enables an instance of a Python class to be called as a function (e.g. obj())?",
+      "options": ["__invoke__", "__run__", "__call__", "__exec__"],
+      "answer": 2,
+      "explanation": "Implementing __call__(self, *args, **kwargs) makes instances callable like regular functions."
+    },
+    {
+      "id": "py_08",
+      "topic": "Python and OOP",
+      "difficulty": "Hard",
+      "question": "What occurs when a mutable default argument (e.g. def func(items=[])) is modified inside the function body?",
+      "options": ["A fresh list is allocated on each call", "Python raises an UnboundLocalError", "The mutation is discarded when the function exits", "The mutated object persists across subsequent calls to that function"],
+      "answer": 3,
+      "explanation": "Default arguments are evaluated once at function definition time, so mutations to a mutable default object persist across all calls."
+    },
+    {
+      "id": "db_01",
+      "topic": "DBMS",
+      "difficulty": "Easy",
+      "question": "In relational database ACID properties, what does 'I' represent?",
+      "options": ["Isolation", "Integrity", "Indexing", "Immutability"],
+      "answer": 0,
+      "explanation": "Isolation ensures concurrent transaction executions leave the database in the same state as if executed serially."
+    },
+    {
+      "id": "db_02",
+      "topic": "DBMS",
+      "difficulty": "Medium",
+      "question": "Which database normal form eliminates transitive functional dependencies of non-key attributes on candidate keys?",
+      "options": ["First Normal Form (1NF)", "Third Normal Form (3NF)", "Second Normal Form (2NF)", "Boyce-Codd Normal Form (BCNF)"],
+      "answer": 1,
+      "explanation": "3NF requires 2NF and that no non-prime attribute is transitively dependent on any candidate key."
+    },
+    {
+      "id": "db_03",
+      "topic": "DBMS",
+      "difficulty": "Medium",
+      "question": "Which type of database index dictates the physical storage order of rows in a table on disk?",
+      "options": ["Secondary Index", "Bitmap Index", "Clustered Index", "Non-Clustered Index"],
+      "answer": 2,
+      "explanation": "A clustered index physically sorts table rows on disk; consequently, a table can have only one clustered index."
+    },
+    {
+      "id": "db_04",
+      "topic": "DBMS",
+      "difficulty": "Easy",
+      "question": "In SQL, which clause filters aggregated rows produced by a GROUP BY clause?",
+      "options": ["WHERE", "ORDER BY", "FILTER", "HAVING"],
+      "answer": 3,
+      "explanation": "The WHERE clause filters individual rows before aggregation, while HAVING filters groups after aggregation."
+    },
+    {
+      "id": "db_05",
+      "topic": "DBMS",
+      "difficulty": "Hard",
+      "question": "Which transaction anomaly occurs when a transaction repeats a range query and discovers newly inserted rows committed by another transaction?",
+      "options": ["Phantom Read", "Dirty Read", "Non-repeatable Read", "Lost Update"],
+      "answer": 0,
+      "explanation": "A phantom read occurs when a transaction queries a range of rows and another committed transaction inserts rows satisfying the predicate."
+    },
+    {
+      "id": "db_06",
+      "topic": "DBMS",
+      "difficulty": "Medium",
+      "question": "Which balanced tree structure is predominantly used by relational database engines (e.g. MySQL InnoDB, PostgreSQL) for primary indexing?",
+      "options": ["Red-Black Tree", "B+ Tree", "Splay Tree", "Trie"],
+      "answer": 1,
+      "explanation": "B+ Trees keep all key-data records in sequentially linked leaf nodes, offering high fanout, shallow depth, and fast range scans."
+    },
+    {
+      "id": "db_07",
+      "topic": "DBMS",
+      "difficulty": "Easy",
+      "question": "Which SQL integrity constraint guarantees that no duplicate values exist in a column across table rows?",
+      "options": ["NOT NULL", "CHECK", "UNIQUE", "FOREIGN KEY"],
+      "answer": 2,
+      "explanation": "The UNIQUE constraint prevents duplicate values in the specified column across distinct rows."
+    },
+    {
+      "id": "db_08",
+      "topic": "DBMS",
+      "difficulty": "Hard",
+      "question": "What does the CAP theorem state regarding distributed data systems?",
+      "options": ["Consistency and Atomicity cannot coexist on distributed networks", "Throughput decreases quadratically with cluster size", "Performance must be sacrificed whenever Persistence is enabled", "A distributed system can guarantee at most two of Consistency, Availability, and Partition Tolerance simultaneously"],
+      "answer": 3,
+      "explanation": "Brewer's CAP theorem proves that when network partitions (P) occur, a distributed system must trade off between Consistency (C) and Availability (A)."
+    },
+    {
+      "id": "os_01",
+      "topic": "OS",
+      "difficulty": "Medium",
+      "question": "Which of the following is NOT one of Coffman's four necessary conditions for deadlock?",
+      "options": ["Preemption allowed", "Mutual Exclusion", "Hold and Wait", "Circular Wait"],
+      "answer": 0,
+      "explanation": "Deadlock requires 'No Preemption' (resources cannot be forcibly taken). If preemption is allowed, deadlocks cannot persist."
+    },
+    {
+      "id": "os_02",
+      "topic": "OS",
+      "difficulty": "Medium",
+      "question": "What is the primary function of the Translation Lookaside Buffer (TLB) in CPU memory management?",
+      "options": ["Disk caching for swap partitions", "High-speed hardware cache for virtual-to-physical address translations", "Saving process registers during context switches", "Buffering kernel system call arguments"],
+      "answer": 1,
+      "explanation": "The TLB is an associative hardware cache inside the MMU storing recent page table entries to speed up address translation."
+    },
+    {
+      "id": "os_03",
+      "topic": "OS",
+      "difficulty": "Easy",
+      "question": "What condition occurs when an operating system spends virtually all its time swapping pages between RAM and disk rather than executing processes?",
+      "options": ["Starvation", "Deadlock", "Thrashing", "Paging Glitch"],
+      "answer": 2,
+      "explanation": "Thrashing arises when active working sets exceed physical memory, resulting in endless page faults and I/O bottlenecks."
+    },
+    {
+      "id": "os_04",
+      "topic": "OS",
+      "difficulty": "Easy",
+      "question": "Which non-preemptive CPU scheduling algorithm produces the theoretically minimum average waiting time for a fixed batch of processes?",
+      "options": ["First-Come First-Served (FCFS)", "Round Robin (RR)", "Priority Scheduling", "Shortest Job First (SJF)"],
+      "answer": 3,
+      "explanation": "Shortest Job First (SJF) is mathematically optimal for minimizing average process waiting time."
+    },
+    {
+      "id": "os_05",
+      "topic": "OS",
+      "difficulty": "Medium",
+      "question": "What synchronization tool created by Edsger Dijkstra consists of an integer accessed solely through atomic wait() and signal() operations?",
+      "options": ["Semaphore", "Mutex Pipe", "Condition Variable", "Atomic Barrier"],
+      "answer": 0,
+      "explanation": "Edsger Dijkstra invented the semaphore synchronization primitive controlled by P (wait) and V (signal) atomic primitives."
+    },
+    {
+      "id": "os_06",
+      "topic": "OS",
+      "difficulty": "Medium",
+      "question": "Which memory allocation problem describes total free memory being sufficient, but fragmented into isolated holes too small for a request?",
+      "options": ["Internal Fragmentation", "External Fragmentation", "Memory Leak", "Virtual Exhaustion"],
+      "answer": 1,
+      "explanation": "External fragmentation occurs when contiguous free memory blocks are split up by scattered allocations."
+    },
+    {
+      "id": "os_07",
+      "topic": "OS",
+      "difficulty": "Easy",
+      "question": "What action does an operating system take during a context switch between two processes?",
+      "options": ["Terminates all child threads of the active process", "Flushes all file system inodes to non-volatile storage", "Saves state of the running process and loads saved state of the scheduled process", "Deallocates virtual memory of the scheduled process"],
+      "answer": 2,
+      "explanation": "A context switch saves the program counter, registers, and stack state of the outgoing process and loads those of the incoming process."
+    },
+    {
+      "id": "os_08",
+      "topic": "OS",
+      "difficulty": "Hard",
+      "question": "In Unix operating systems, what is a process called that has completed execution but whose exit status has not yet been collected by its parent?",
+      "options": ["Orphan process", "Daemon process", "Interrupted process", "Zombie process"],
+      "answer": 3,
+      "explanation": "A zombie process remains in the OS process table after termination so its parent can read its exit code via wait()."
+    },
+    {
+      "id": "net_01",
+      "topic": "Networks",
+      "difficulty": "Easy",
+      "question": "At which layer of the OSI model does the Internet Protocol (IP) reside?",
+      "options": ["Network Layer (Layer 3)", "Data Link Layer (Layer 2)", "Transport Layer (Layer 4)", "Application Layer (Layer 7)"],
+      "answer": 0,
+      "explanation": "The Internet Protocol operates at the Network Layer (Layer 3), handling logical addressing and packet routing."
+    },
+    {
+      "id": "net_02",
+      "topic": "Networks",
+      "difficulty": "Easy",
+      "question": "What sequence of packets does TCP use to establish a reliable connection between client and server?",
+      "options": ["SYN, ACK", "SYN, SYN-ACK, ACK", "CONNECT, ACCEPT, ACK", "HELLO, HELLO-ACK, READY"],
+      "answer": 1,
+      "explanation": "TCP establishes connections via a 3-way handshake: Client sends SYN, Server replies SYN-ACK, Client acknowledges with ACK."
+    },
+    {
+      "id": "net_03",
+      "topic": "Networks",
+      "difficulty": "Medium",
+      "question": "Which family of routing protocols (such as OSPF and IS-IS) uses Dijkstra's algorithm to compute the shortest path tree?",
+      "options": ["Distance-Vector Routing", "Path-Vector Routing", "Link-State Routing", "Flooding Routing"],
+      "answer": 2,
+      "explanation": "Link-State routing protocols construct a full network topology map on each router and execute Dijkstra's algorithm to compute shortest paths."
+    },
+    {
+      "id": "net_04",
+      "topic": "Networks",
+      "difficulty": "Easy",
+      "question": "What is the standard port number assigned to secure encrypted HTTPS web traffic?",
+      "options": ["80", "22", "8080", "443"],
+      "answer": 3,
+      "explanation": "Standard unencrypted HTTP operates on port 80, whereas TLS/SSL encrypted HTTPS operates on port 443."
+    },
+    {
+      "id": "net_05",
+      "topic": "Networks",
+      "difficulty": "Medium",
+      "question": "What protocol resolves a known 32-bit IPv4 address into a 48-bit physical MAC address on a local Ethernet segment?",
+      "options": ["Address Resolution Protocol (ARP)", "Domain Name System (DNS)", "Dynamic Host Configuration Protocol (DHCP)", "Internet Control Message Protocol (ICMP)"],
+      "answer": 0,
+      "explanation": "ARP broadcasts on the local link to determine the hardware MAC address corresponding to a target IP address."
+    },
+    {
+      "id": "net_06",
+      "topic": "Networks",
+      "difficulty": "Medium",
+      "question": "In TCP flow control, what mechanism prevents a fast sender from overrunning a slow receiver's incoming buffer?",
+      "options": ["Slow Start Exponential Threshold", "Sliding Window Protocol", "Nagle's Packet Coalescing", "Path MTU Discovery"],
+      "answer": 1,
+      "explanation": "The receiver advertises its available buffer capacity (Receive Window) in TCP acknowledgments, restricting sender transmissions."
+    },
+    {
+      "id": "net_07",
+      "topic": "Networks",
+      "difficulty": "Easy",
+      "question": "Which network protocol automatically assigns IP addresses, subnet masks, and default gateways to client devices upon connection?",
+      "options": ["DNS", "SNMP", "DHCP", "NTP"],
+      "answer": 2,
+      "explanation": "DHCP (Dynamic Host Configuration Protocol) leases IP parameters automatically to network hosts."
+    },
+    {
+      "id": "net_08",
+      "topic": "Networks",
+      "difficulty": "Hard",
+      "question": "What is the primary function of the Time to Live (TTL) field in an IPv4 packet header?",
+      "options": ["Estimates connection latency across hops", "Coordinates end-to-end TCP sequence clocks", "Encrypts payload contents", "Prevents packets from looping infinitely in routing loops"],
+      "answer": 3,
+      "explanation": "Routers decrement the TTL on each hop; if TTL hits 0, the packet is discarded with an ICMP Time Exceeded reply, preventing infinite loops."
+    },
+    {
+      "id": "math_01",
+      "topic": "Math and Probability",
+      "difficulty": "Easy",
+      "question": "If two fair six-sided dice are rolled simultaneously, what is the probability that their sum equals 7?",
+      "options": ["1/6 (6/36)", "1/12 (3/36)", "5/36", "7/36"],
+      "answer": 0,
+      "explanation": "The 6 favorable pairs (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) out of 36 outcomes yield 6/36 = 1/6."
+    },
+    {
+      "id": "math_02",
+      "topic": "Math and Probability",
+      "difficulty": "Medium",
+      "question": "According to Bayes' Theorem, what is the formula for calculating conditional probability P(A|B)?",
+      "options": ["[P(A) * P(B)] / P(B|A)", "[P(B|A) * P(A)] / P(B)", "P(A) + P(B) - P(A and B)", "P(B|A) * P(B)"],
+      "answer": 1,
+      "explanation": "Bayes' Theorem establishes that P(A|B) = [P(B|A) * P(A)] / P(B)."
+    },
+    {
+      "id": "math_03",
+      "topic": "Math and Probability",
+      "difficulty": "Easy",
+      "question": "What is the mathematical expected value of rolling a single fair six-sided die?",
+      "options": ["3.0", "4.0", "3.5", "3.6"],
+      "answer": 2,
+      "explanation": "E[X] = (1 + 2 + 3 + 4 + 5 + 6) / 6 = 21 / 6 = 3.5."
+    },
+    {
+      "id": "math_04",
+      "topic": "Math and Probability",
+      "difficulty": "Medium",
+      "question": "What is the maximum number of edges in a simple undirected graph containing n vertices?",
+      "options": ["n^2", "2 * n - 1", "n * (n + 1) / 2", "n * (n - 1) / 2"],
+      "answer": 3,
+      "explanation": "In a complete graph K_n, each vertex connects to n-1 other vertices, yielding n*(n-1)/2 distinct edges."
+    },
+    {
+      "id": "math_05",
+      "topic": "Math and Probability",
+      "difficulty": "Easy",
+      "question": "What is the derivative of the natural logarithm function f(x) = ln(x) for all x > 0?",
+      "options": ["1/x", "e^x", "x * ln(x)", "-1 / (x^2)"],
+      "answer": 0,
+      "explanation": "By calculus differentiation rules, d/dx [ln(x)] = 1/x for all x > 0."
+    },
+    {
+      "id": "math_06",
+      "topic": "Math and Probability",
+      "difficulty": "Medium",
+      "question": "If independent events A and B have probabilities P(A) = 0.3 and P(B) = 0.4, what is P(A and B)?",
+      "options": ["0.70", "0.12", "0.35", "0.10"],
+      "answer": 1,
+      "explanation": "For independent events, joint probability is the product of marginals: P(A and B) = P(A) * P(B) = 0.3 * 0.4 = 0.12."
+    },
+    {
+      "id": "math_07",
+      "topic": "Math and Probability",
+      "difficulty": "Easy",
+      "question": "What is the sum of the interior angles of any convex polygon with n sides?",
+      "options": ["n * 180 degrees", "(n - 1) * 360 degrees", "(n - 2) * 180 degrees", "n * 360 degrees"],
+      "answer": 2,
+      "explanation": "A convex n-sided polygon can be triangulated into (n - 2) triangles, giving (n - 2) * 180 degrees total."
+    },
+    {
+      "id": "math_08",
+      "topic": "Math and Probability",
+      "difficulty": "Hard",
+      "question": "In modular arithmetic, what is the value of (17^3) mod 5?",
+      "options": ["1", "2", "4", "3"],
+      "answer": 3,
+      "explanation": "Since 17 mod 5 = 2, we have 17^3 mod 5 = 2^3 mod 5 = 8 mod 5 = 3."
+    },
+    {
+      "id": "gk_01",
+      "topic": "General Knowledge",
+      "difficulty": "Easy",
+      "question": "Who conceived and published the famous shortest-path algorithm in 1959 that bears his name?",
+      "options": ["Edsger W. Dijkstra", "Alan Turing", "John von Neumann", "Donald Knuth"],
+      "answer": 0,
+      "explanation": "Dutch computer scientist Edsger Wybe Dijkstra formulated the shortest path algorithm in 1956 and published it in 1959."
+    },
+    {
+      "id": "gk_02",
+      "topic": "General Knowledge",
+      "difficulty": "Easy",
+      "question": "Which English mathematician and codebreaker is celebrated as the founding father of theoretical computer science and artificial intelligence?",
+      "options": ["Charles Babbage", "Alan Turing", "Claude Shannon", "John Backus"],
+      "answer": 1,
+      "explanation": "Alan Turing formalized the concepts of algorithms and computation with the Turing machine and broke Enigma codes at Bletchley Park."
+    },
+    {
+      "id": "gk_03",
+      "topic": "General Knowledge",
+      "difficulty": "Easy",
+      "question": "Who is recognized in computing history as the world's first computer programmer for writing an algorithm for the Analytical Engine?",
+      "options": ["Grace Hopper", "Margaret Hamilton", "Ada Lovelace", "Katherine Johnson"],
+      "answer": 2,
+      "explanation": "Ada Lovelace created the first published computer algorithm intended for Charles Babbage's mechanical Analytical Engine."
+    },
+    {
+      "id": "gk_04",
+      "topic": "General Knowledge",
+      "difficulty": "Easy",
+      "question": "In what year was the Python programming language first publicly released by creator Guido van Rossum?",
+      "options": ["1985", "1995", "2000", "1991"],
+      "answer": 3,
+      "explanation": "Guido van Rossum released Python version 0.9.0 to the alt.sources newsgroup in February 1991."
+    },
+    {
+      "id": "gk_05",
+      "topic": "General Knowledge",
+      "difficulty": "Medium",
+      "question": "Which US Navy rear admiral and pioneer coined the term 'compiler' and led the team that developed the A-0 system?",
+      "options": ["Grace Hopper", "Barbara Liskov", "Frances Allen", "Jean Bartik"],
+      "answer": 0,
+      "explanation": "Grace Hopper developed the first compiler in 1952 and strongly advocated for machine-independent programming languages."
+    },
+    {
+      "id": "gk_06",
+      "topic": "General Knowledge",
+      "difficulty": "Easy",
+      "question": "What does the hardware acronym GPU stand for?",
+      "options": ["General Peripheral Unit", "Graphics Processing Unit", "Grid Parallelism Utility", "Global Processor Utility"],
+      "answer": 1,
+      "explanation": "GPU stands for Graphics Processing Unit, specialized in highly parallel computations."
+    },
+    {
+      "id": "gk_07",
+      "topic": "General Knowledge",
+      "difficulty": "Medium",
+      "question": "Which international non-profit corporation coordinates global Internet names, IP numbers, and root DNS systems?",
+      "options": ["IEEE", "W3C", "ICANN", "IETF"],
+      "answer": 2,
+      "explanation": "ICANN (Internet Corporation for Assigned Names and Numbers) coordinates the Internet's unique identifiers worldwide."
+    },
+    {
+      "id": "gk_08",
+      "topic": "General Knowledge",
+      "difficulty": "Medium",
+      "question": "What pioneering packet-switching network funded by the US Department of Defense was the direct precursor to the modern Internet?",
+      "options": ["BITNET", "CYCLADES", "ALOHANET", "ARPANET"],
+      "answer": 3,
+      "explanation": "ARPANET, initiated by DARPA, transmitted its first packet messages between UCLA and SRI in October 1969."
+    }
+  ],
+  "custom_materials": []
+}
